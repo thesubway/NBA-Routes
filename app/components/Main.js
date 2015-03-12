@@ -20,6 +20,8 @@ var Main = React.createClass({
   },
   render: function(){
     /* Code Here */
+    var loginOrOut = {};
+    var register = {};
     return (
       <span>
         <nav className="navbar navbar-default navbar-static-top">
