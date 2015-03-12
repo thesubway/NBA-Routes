@@ -45,6 +45,22 @@ var firebaseUtils = {
 	            cbOnRegister && cbOnRegister(true);
 	        }
 	    }.bind(this));
+	},
+	isLoggedIn: function() {
+		//if both null, return false. if either not null, then true.
+		if (cachedUser !== null) || (ref.getAuth() !== null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	},
+	logout: function() {
+		//logs user out, resets cachedUser to null,
+		// and invokes this.onChange(false)
+		ref.unauth();
+		cachedUser = null;
+		this.onChange(false);
 	}
 };
 
