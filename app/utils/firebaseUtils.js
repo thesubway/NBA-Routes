@@ -9,6 +9,26 @@ var firebaseUtils = {
 		return(
 			ref
 		);
+	},
+	createUser: function(user,cb) {
+		//use guide for Firebase.createUser() here.
+		ref.createUser(user, function(error){
+			if (error) {
+				switch(error.code) {
+					case "EMAIL_TAKEN":
+					    console.log("The new user account cannot be created because the email is already in use.");
+					    break;
+					case "INVALID_EMAIL":
+					    console.log("The specified email is not a valid email.");
+					    break;
+					default:
+					    console.log("Error creating user:", error);
+				}
+			}
+			else {
+				console.log("Successfully created user account with uid:", userData.uid);
+			}
+		}.bind(this));
 	}
 };
 
