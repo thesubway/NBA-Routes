@@ -25,13 +25,13 @@ var Register = React.createClass({
     //prevents some default action.
     e.preventDefault();
     //grabs the email and password from the refs in the render method:
-    var email = this.refs.email.getDomNode().value;
-    var pw = this.refs.pw.getDomNode().value;
+    var email = this.refs.email.getDOMNode().value;
+    var pw = this.refs.pw.getDOMNode().value;
     //method's parameters are object, and callback:
     firebaseUtils.createUser({email: email, password: pw}, function(result){
       if(result) {
         //result is truthy, so take to home route.
-        thisreplaceWith('home');
+        this.replaceWith('home');
       }
     }.bind(this));
   }
