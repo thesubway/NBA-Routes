@@ -61,6 +61,13 @@ var firebaseUtils = {
 		ref.unauth();
 		cachedUser = null;
 		this.onChange(false);
+	},
+	toArray: function(inObj) {
+		//takes in object, returns array with indices in that array
+		//being the values that were in the object.
+		var array = $.map(myObj, function(value, index) {
+		    return [value];
+		});
 	}
 };
 
