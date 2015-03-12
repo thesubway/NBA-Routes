@@ -29,6 +29,22 @@ var firebaseUtils = {
 				console.log("Successfully created user account with uid:", userData.uid);
 			}
 		}.bind(this));
+	},
+	loginWithPW: function(userObj, cb, cbOnRegister) {
+	    ref.authWithPassword(userObj, function(err, authData) {
+	        if (err) {
+	            console.log('Error on login:', err.message);
+	            
+	            cbOnRegister && cbOnRegister(false);
+	        } else {
+	        	//go ahead and make it so that user gets logged in:
+	            authData.email = userObj.email;
+	            cachedUser = authData;
+	            cb(authData);
+	            this.onChange(true);
+	            cbOnRegister && cbOnRegister(true);
+	        }
+	    }.bind(this));
 	}
 };
 
