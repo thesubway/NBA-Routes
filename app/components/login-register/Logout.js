@@ -6,3 +6,6 @@ var Logout = React.createClass({
 });
 
 module.exports = Logout;
+
+var Logout = Reaasd
+sdf

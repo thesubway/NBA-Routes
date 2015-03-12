@@ -5,7 +5,7 @@ var firebaseUtils = require('../../utils/firebaseUtils');
 var Login = React.createClass({
   mixins: [Router.Navigation],
   statics: {
-    attemptedTransition: null
+    attemptedTransition: null;
   },
   render: function(){
     return (
@@ -23,6 +23,25 @@ var Login = React.createClass({
         </form>
       </div>
     );
+  },
+  handleSubmit: function(e){
+      //prevent default action of clicking this button.
+      e.preventDefault();
+      var email = this.refs.email.getDOMNode().value;
+      var pw    = this.refs.pw.getDOMNode().value;
+      firebaseUtils.loginWithPW({email: email, password: pw}, function(){
+        //check if attemptedTransition is truthy.
+        if Login.attemptedTransition{
+          //if truthy, then set as transition.
+          var transition = Login.attemptedTransition;
+          Login.attemptedTransition = null;
+          transition.retry();
+        }
+        else{
+          //not truthy. take user to the home state
+          this.replaceWith('home');
+        }
+      }.bind(this));
   }
 });
 
